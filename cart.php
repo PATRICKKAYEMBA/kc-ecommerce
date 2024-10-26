@@ -3,20 +3,32 @@
 session_start();
 
 // Include database connection
-include('../config/db.php');
+include('config/db.php');
 
 // Initialize the cart session if not set
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Remove item from cart
+// Handle Add to Cart action
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
+    $productId = $_POST['product_id'];
+
+    // Check if the product is already in the cart
+    if (!isset($_SESSION['cart'][$productId])) {
+        $_SESSION['cart'][$productId] = ['quantity' => 1];
+    } else {
+        $_SESSION['cart'][$productId]['quantity'] += 1;
+    }
+}
+
+// Handle Remove from Cart action
 if (isset($_GET['action']) && $_GET['action'] == 'remove') {
     $id = $_GET['id'];
     unset($_SESSION['cart'][$id]);
 }
 
-// Update quantities
+// Update cart quantities
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_cart'])) {
     foreach ($_POST['quantities'] as $id => $quantity) {
         if ($quantity <= 0) {
@@ -45,7 +57,6 @@ if (!empty($_SESSION['cart'])) {
         $total_price += $row['total_price'];
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +65,7 @@ if (!empty($_SESSION['cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
@@ -85,7 +96,7 @@ if (!empty($_SESSION['cart'])) {
                     <tbody>
                         <?php foreach ($cart_products as $product) { ?>
                             <tr>
-                                <td><?php echo $product['name']; ?></td>
+                                <td><?php echo htmlspecialchars($product['name']); ?></td>
                                 <td>$<?php echo number_format($product['price'], 2); ?></td>
                                 <td>
                                     <input type="number" name="quantities[<?php echo $product['id']; ?>]" value="<?php echo $product['quantity']; ?>" min="1">

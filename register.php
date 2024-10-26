@@ -1,5 +1,5 @@
 <?php
-include('../config/db.php');
+include('config/db.php');
 
 $error = "";
 $success = "";
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="login-container">
         <div class="login-image">
-            <img src="../images/empty-cart-image.jpeg">
+            <img src="images/empty-cart-image.jpeg">
         </div>
         <div>
             <h2>Create a New Account</h2>

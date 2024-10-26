@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../config/db.php');
+include('config/db.php');
 
 $error = "";
 
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - E-Commerce Site</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="login-container">
         <div class="login-image">
-            <img src="../images/cart1-image.jpeg" alt="Shopping Cart">
+            <img src="images/cart1-image.jpeg" alt="Shopping Cart">
         </div>
         <div class="login-box">
             <h2>Login to Your Account</h2>

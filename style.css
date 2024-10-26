@@ -130,6 +130,10 @@ p {
     transition: all 0.3s ease;
 }
 
+.login-image {
+    background: transparent;
+}
+
 h2 {
     margin-bottom: 1.5rem;
     color: #333;
@@ -208,14 +212,16 @@ p a:hover {
     justify-content: center;
 }
 
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .product {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    padding: 10px;
     text-align: center;
-    width: calc(25% - 40px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product:hover {
