@@ -14,15 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = mysqli_fetch_assoc($result);
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_role'] = $user['role'];
             $_SESSION['user_name'] = $user['name'];
 
-            if ($user['role'] == 'admin') {
-                header('Location: admin_dashboard.php');
-            } else {
-                header('Location: dashboard.php');
-            }
+            header('Location: dashboard.php');
             exit();
+            
         } else {
             $error = "Invalid password. Please try again.";
         }
@@ -38,11 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - E-Commerce Site</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to ChrisPat Shopping</h1>
+    <header class="index-header">
+        <h1>Welcome to Our E-Commerce Store</h1>
         <nav>
             <a href="#">Home</a>
             <a href="#">Shop</a>
@@ -61,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p class="error-message"><?php echo $error; ?></p>
             <?php endif; ?>
 
-            <form method="POST" action="login.php">
+            <form method="POST">
                 <div class="input-group">
                     <!-- <label for="email">Email:</label> -->
                     <input type="email" name="email" placeholder="Enter your email" required>
