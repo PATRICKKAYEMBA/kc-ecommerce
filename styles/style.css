@@ -43,6 +43,11 @@ header nav a:hover {
     text-decoration: underline;
 }
 
+.index-header{
+    display: grid;
+    grid-row: 1fr 1fr 1fr;
+}
+
 .hero-section{
     display: flex;
     height: 100vh;
