@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 session_start();
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_name = $_SESSION['user_name'];
-?>
+?> -->
 
 
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ $user_name = $_SESSION['user_name'];
           
         </div>
 
-        <div class="payment-summary">
+        <div class="payment-summary js-payment-summary">
           <div class="payment-summary-title">
             Order Summary
           </div>
